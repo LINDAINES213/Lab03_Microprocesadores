@@ -6,6 +6,14 @@
 *******************************************************************************/
 #include <iostream>
 #include <pthread.h>
+/******************************************************************************
+
+                    Linda Ines Jimenez Vides - 21169
+                        Laboratorio 3 - Ejercicio 1
+
+*******************************************************************************/
+#include <iostream>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 # define NUM_THREADS 2
@@ -16,21 +24,22 @@ using std::endl;
 
 int divisores;
 int i;
+int N;
 
 void *primos(void *threadID){
     
     divisores = 0;
     
-    for(int i=1; i<= N; i++){
-        if(n%i == 0){
+    for(int i=1; i<=N; i++){
+        if(N%i == 0){
             divisores++;
         }
     }
     
     if(divisores == 2){
-        return true;
+        printf("True");
     } else{
-        return false;
+        printf("False");
     }
     
     pthread_exit(NULL);
@@ -40,33 +49,33 @@ int main(){
     
     int N;
     int t;
+    int r;
+    
+    cout << "Introduce un valor maximo: ";
+    cin >> N;
+    
     pthread_t threads[NUM_THREADS];
     for(t=0; t<NUM_THREADS; t++){
-        N = pthread_create(&threads[t], NULL, primos, &t);
-        if(N){
-            printf("Error, return code from pthread_create() is %d \n", N);
+        r = pthread_create(&threads[t], NULL, primos, &t);
+        if(r){
+            printf("Error, return code from pthread_create() is %d \n", r);
             exit(-1);
         }
     }
     
-    for (t=0; t<NUM_THREADS; t++){
-        pthread_exit(NULL);
+    for (t = 0; t < NUM_THREADS; t++){
+        pthread_join(threads[t], NULL);
     }
     
-    printf("\n Primos: %d \n", divisores);
-    pthread_exit(NULL);
-    
-    
-    
     bool resultado;
-    cout << "Introduce un valor maximo: ";
-    cin >> N;
     for(int i=1; i<=N; i++){
-        resultado = esprimo(i);
+        resultado = primos(N);
         if(resultado == true){
             cout << i << ",";
         }
     }
     
-    return 0;
+    printf("\n Primos: %d \n", resultado);
+    pthread_exit(NULL);
+    
 }
