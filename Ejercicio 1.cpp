@@ -6,14 +6,6 @@
 *******************************************************************************/
 #include <iostream>
 #include <pthread.h>
-/******************************************************************************
-
-                    Linda Ines Jimenez Vides - 21169
-                        Laboratorio 3 - Ejercicio 1
-
-*******************************************************************************/
-#include <iostream>
-#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 # define NUM_THREADS 2
