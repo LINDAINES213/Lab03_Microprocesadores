@@ -4,9 +4,6 @@
                         Laboratorio 3 - Ejercicio 1
                         hdevcbsdcd
 
-
-
-hodckjdb cd
 *******************************************************************************/
 #include <iostream>
 #include <pthread.h>
